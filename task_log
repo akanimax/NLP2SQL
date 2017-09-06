@@ -1,0 +1,16 @@
+Date: 5/09/2017
+1.) Selected a task that is easier but similar to the main objective. I will first develop a chatbot (a seq2seq where input and output are both natural language sentences). To do this, I first referred the Andrej's lecture on RNNs and LSTMs and read this article http://colah.github.io/posts/2015-08-Understanding-LSTMs/.
+
+2.) Selected Dataset for training the chatbot: https://www.cs.cornell.edu/~cristian/Cornell_Movie-Dialogs_Corpus.html. The dataset contains dialogs from many movies.
+
+3.) I coded a preliminary model for training on this data. project on my github. 
+github link: https://github.com/akanimax/deep-learning-chat-bot/blob/master/Scripts/ChatBot_RNN_builder_pt2(Training).ipynb 
+but this one failed miserably as the loss is too much and there is no sign of convergence.
+
+4.) So, It seems I will have to develop a model of my own for this dataset. This is what I will work on next. 
+** Correction: This approach of developing a chatbot first has been dropped. I will now directly start working on the seq2SQL problem.
+
+
+
+Date: 6/09/2017
+
