@@ -2,7 +2,28 @@ Introduction: Quepy is a python framework to transform natural language question
 
 Notes: 
 **1.) Built in support only for Sparql and MQL. 
-It is possible to convert spqrql and MQL queries to SQL queries. But, there are some shortcomings. For instance, in sparql, the join mechanism is completely different from the Relational tables. So, this could be a challenge for us.
+Since, we require the queries to be in SQL, there are two approaches to handle this:
+	a.) We can write simple pattern matching parsers to convert the Sparql queries into SQL. OR
+	b.) We can create an RDF on top of our RDB and use the sparql as it is. (ref: https://www.w3.org/TR/r2rml/)
 
-2.)
+2.) How Quepy works:
+	From what I have understood by writing a simple application using quepy, 
+	my code here: https://github.com/akanimax/NLP2SQL/blob/master/sample_quepy_project/sample_quepy_project/basic.py
+
+	There are two separate parts of the quepy application:
+
+	a.) The NLP (tokenisation, tagging, lemmatisation).
+		In this part, the regex rules are defined for instance, if We are supposed to tackle the questions of type "What is <Target>?". We could write a 
+	regex rule like -> 
+	
+	regex = Lemma("what") + Lemma("be") + target + Question(Pos(".")) # here Pos(".") means a punctuation and lemma handles all the cases of verb inflections such as 
+	# what is, what are, what were, etc.
+
+	b.) Semantic conversion (conversion to Domain Specific Language [DSL]).
+		In the DSL module, we define the Fixed relations used in the sparql query format. ref: https://www.w3.org/2009/Talks/0615-qbe/.
+	
+	While putting it all together, we have to create an exhaustive list of the type of questions that can be answered by our system. Then using the helpers for 		defining (a) and (b), we have to write the model of conversion. Finally, using the query generator in the main module is as simple as: 
+
+	target, query, metadata = my_query_project.get_query("what is a blowtorch?") # the query and target are represented in a semantic form.
+
 
